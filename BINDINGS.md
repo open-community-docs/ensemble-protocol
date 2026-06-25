@@ -75,14 +75,16 @@ Any relay implementing `POST /a2a/{target_agent_id}` with shared `contextId` thr
 
 ## 2. SLIM-group binding (specified, not implemented)
 
-Maps ESP to [SLIM](https://slim.agntcy.org) group channels with optional [Collaboration Context](https://github.com/agntcy/slim-spec/issues/14) headers.
+Maps ESP to [SLIM](https://slim.agntcy.org) group channels with [Collaboration Context](https://github.com/agntcy/slim-spec/issues/14) headers. Full alignment rationale: [docs/alignment-agntcy-collaboration-context.md](docs/alignment-agntcy-collaboration-context.md).
 
 ### 2.1 ID mapping
 
 | ESP | SLIM |
 |-----|------|
-| `ensemble_id` | `SlimContextHeader.context_id` as `slim-context://{namespace}/{name}` |
-| Envelope body | SLIM message data payload (JSON) |
+| `ensemble_id` | `SlimContextHeader.context_id`; same `{org}/{name}` tuple as `slim-context://{org}/{name}` |
+| `ens://{org}/{name}` | Bijective alias of `slim-context://{org}/{name}` in this binding |
+| Envelope body | SLIM message data payload (JSON-serialized ESP Envelope) |
+| `SlimContextHeader.sequence` | Per-sender ordering within the context (audit / gap detection) |
 | Group channel | SLIM Group created per ensemble on `active` transition |
 
 ### 2.2 Pattern execution

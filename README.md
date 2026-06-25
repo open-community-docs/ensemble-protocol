@@ -18,9 +18,12 @@ A2A answers *how one agent delegates work to another*. SLIM answers *how message
 ## Repository layout
 
 ```
-schemas/          JSON Schema definitions
 SPEC.md           Protocol specification
 BINDINGS.md       Transport binding profiles (A2A-relay, SLIM)
+GOVERNANCE.md     Project governance and path to neutral stewardship
+CONTRIBUTING.md   How to contribute
+schemas/          JSON Schema definitions
+docs/             Cross-protocol alignment proposals
 examples/         Reference ensemble definitions
 sdk/python/       Reference Python SDK
 ```
@@ -63,8 +66,12 @@ replies = binding.execute(ensemble, CoordinationPattern.BROADCAST, "Deliver invo
 ## Relationship to other protocols
 
 - **A2A**: ESP envelopes carry A2A `Message` payloads; A2A-relay binding maps `ensemble_id` → `contextId`.
-- **SLIM / AGNTCY Collaboration Context**: Compatible lifecycle states; SLIM binding carries ESP envelopes as message bodies.
+- **SLIM / AGNTCY Collaboration Context**: Compatible lifecycle states; SLIM binding carries ESP envelopes as message bodies. See [docs/alignment-agntcy-collaboration-context.md](docs/alignment-agntcy-collaboration-context.md).
 - **MCP**: Specialists invoke tools locally; ESP coordinates *which* specialist acts and *when*.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [GOVERNANCE.md](GOVERNANCE.md).
 
 ## License
 
