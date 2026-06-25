@@ -1,6 +1,7 @@
-"""A2A-relay binding — maps ESP patterns to pairwise A2A calls through a platform relay.
+"""A2A-relay binding — maps ESP patterns to pairwise A2A calls through an HTTP relay.
 
-Compatible with a2a-platform: POST /a2a/{target_agent_id} with shared contextId.
+Expects a relay that exposes POST /a2a/{target_agent_id} and threads messages by
+shared contextId (ensemble_id).
 """
 
 from __future__ import annotations

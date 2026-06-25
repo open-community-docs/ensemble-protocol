@@ -12,7 +12,7 @@ ESP envelopes are transport-agnostic. This document defines how bindings map ESP
 
 ## 1. A2A-relay binding
 
-Maps ESP to [A2A](https://a2a-protocol.org) JSON-RPC over an HTTP relay (e.g. [a2a-platform](https://github.com/…)).
+Maps ESP to [A2A](https://a2a-protocol.org) JSON-RPC over an HTTP relay that forwards pairwise agent traffic and groups messages by `contextId`.
 
 ### 1.1 ID mapping
 
@@ -71,7 +71,7 @@ Binding-specific. Options:
 
 `sdk/python/ensemble_protocol/bindings/a2a_relay.py`
 
-Compatible with a2a-platform relay (`POST /a2a/{target_agent_id}`).
+Any relay implementing `POST /a2a/{target_agent_id}` with shared `contextId` threading is compatible.
 
 ## 2. SLIM-group binding (specified, not implemented)
 
