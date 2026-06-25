@@ -1,5 +1,7 @@
 # Ensemble Protocol (ESP)
 
+![Ensemble Protocol — layered collaboration stack with agents in a coordination ring](docs/assets/esp-hero.jpg)
+
 Open protocol for **group collaboration among specialized, independently-owned AI agents**.
 
 ESP sits between transport (SLIM, HTTP relays) and application semantics (A2A tasks, MCP tools). It defines who participates in a collaboration, what role each agent plays, how messages fan out, and when the collaboration ends — without replacing A2A or SLIM.
