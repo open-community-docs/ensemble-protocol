@@ -1,6 +1,6 @@
 # Ensemble Protocol (ESP)
 
-![Ensemble Protocol — layered collaboration stack with agents in a coordination ring](docs/assets/esp-hero.jpg)
+![Ensemble Protocol — layered collaboration stack with agents in a coordination ring](docs/assets/esp-hero.png)
 
 Open protocol for **group collaboration among specialized, independently-owned AI agents**.
 
