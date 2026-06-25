@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ensemble-protocol.dev/schemas/envelope.json",
+  "title": "ESPEnvelope",
+  "type": "object",
+  "required": [
+    "esp_version",
+    "ensemble_id",
+    "pattern",
+    "from",
+    "to",
+    "correlation_id",
+    "payload"
+  ],
+  "properties": {
+    "esp_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "ensemble_id": {
+      "type": "string",
+      "pattern": "^ens://[^/]+/[^/]+$"
+    },
+    "pattern": {
+      "type": "string",
+      "enum": [
+        "broadcast",
+        "unicast",
+        "request_any",
+        "request_all",
+        "contract_net",
+        "blackboard_post",
+        "handoff"
+      ]
+    },
+    "from": { "$ref": "#/$defs/participant" },
+    "to": { "$ref": "#/$defs/addressing" },
+    "correlation_id": { "type": "string", "minLength": 1 },
+    "causation_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": { "$ref": "#/$defs/payload" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "participant": {
+      "type": "object",
+      "required": ["agent_ref", "role"],
+      "properties": {
+        "agent_ref": { "type": "string", "minLength": 1 },
+        "role": {
+          "type": "string",
+          "enum": ["coordinator", "specialist", "observer", "broker"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "addressing": {
+      "type": "object",
+      "required": ["selector"],
+      "properties": {
+        "selector": {
+          "type": "string",
+          "pattern": "^(role|agent|skill|all):.+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "intent": { "type": "string" },
+        "phase": {
+          "type": "string",
+          "enum": ["announce", "bid", "award", "reject"]
+        },
+        "a2a_message": { "type": "object" },
+        "artifact": { "type": "object" },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

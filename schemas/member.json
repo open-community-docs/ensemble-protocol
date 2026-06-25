@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ensemble-protocol.dev/schemas/member.json",
+  "title": "ESPMember",
+  "type": "object",
+  "required": ["agent_ref", "role"],
+  "properties": {
+    "agent_ref": { "type": "string", "minLength": 1 },
+    "role": {
+      "type": "string",
+      "enum": ["coordinator", "specialist", "observer", "broker"]
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "read_blackboard",
+          "post_artifacts",
+          "respond_to_coordination",
+          "coordinate"
+        ]
+      }
+    },
+    "accepted_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}

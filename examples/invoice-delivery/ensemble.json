@@ -1,0 +1,31 @@
+{
+  "esp_version": "0.1.0",
+  "ensemble_id": "ens://bknight.dev/invoice-delivery-2026-06-25",
+  "state": "active",
+  "coordinator": "financial-agent",
+  "members": [
+    {
+      "agent_ref": "financial-agent",
+      "role": "coordinator",
+      "skills": ["file_return", "deliver_invoice"],
+      "permissions": ["coordinate", "read_blackboard", "post_artifacts"]
+    },
+    {
+      "agent_ref": "document-agent",
+      "role": "specialist",
+      "skills": ["document.ingest"],
+      "permissions": ["read_blackboard", "post_artifacts", "respond_to_coordination"]
+    },
+    {
+      "agent_ref": "email-agent",
+      "role": "specialist",
+      "skills": ["send_document", "action_status"],
+      "permissions": ["read_blackboard", "respond_to_coordination"]
+    }
+  ],
+  "created_at": "2026-06-25T12:00:00Z",
+  "metadata": {
+    "description": "Invoice PDF ingestion and email delivery across federated agents",
+    "source_flow": "life-federation/financial-agent inter_agent.py"
+  }
+}
