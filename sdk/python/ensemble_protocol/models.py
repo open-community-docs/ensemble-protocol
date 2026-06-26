@@ -72,8 +72,9 @@ class Envelope(BaseModel):
     model_config = {"populate_by_name": True}
 
     def to_dict(self) -> dict[str, Any]:
-        data = self.model_dump(by_alias=True, mode="json")
-        return data
+        # exclude_none: optional fields (causation_id, unset payload fields) are typed
+        # string/object in the schema, so emit them as absent rather than null.
+        return self.model_dump(by_alias=True, mode="json", exclude_none=True)
 
 
 class EnsembleDoc(BaseModel):
@@ -86,4 +87,6 @@ class EnsembleDoc(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        return self.model_dump(mode="json")
+        # exclude_none: a member's accepted_at is null until acceptance, but the schema
+        # types it as string — omit it (and any other unset optionals) to stay valid.
+        return self.model_dump(mode="json", exclude_none=True)
